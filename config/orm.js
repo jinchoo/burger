@@ -14,7 +14,10 @@ function objToSql(ob) {
   for (var key in ob) {
     var value = ob[key];
     if (Object.hasOwnProperty.call(ob, key)) {
-      arr.push(key + "=" + value);
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+      arr.push(key + " = " + value);
     }
   }
   return arr.toString();
@@ -24,9 +27,7 @@ var orm = {
   all: function (tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function (err, result) {
-      if (err) {
-        throw err;
-      }
+      if (err) throw err;
       cb(result);
     });
   },
@@ -41,16 +42,15 @@ var orm = {
     queryString += ") ";
 
     console.log(queryString);
+    console.log(vals);
 
     connection.query(queryString, vals, function (err, result) {
-      if (err) {
-        throw err;
-      }
+      if (err) throw err;
       cb(result);
     });
   },
 
-  update: function (table, objColVals, condtion, cb) {
+  update: function (table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
@@ -60,10 +60,7 @@ var orm = {
 
     console.log(queryString);
     connection.query(queryString, function (err, result) {
-      if (err) {
-        throw err;
-      }
-
+      if (err) throw err;
       cb(result);
     });
   },

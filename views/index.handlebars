@@ -1,30 +1,23 @@
 <div class="container">
-
 	<div class="row">
 		<div class="col-md-12">
-			<img src="/assets/images/burger.jpeg" alt="burger" class="img-responsive center-block">
+			<img src="/burger/public/assets/images/burger2.jpg" alt="burger" class="img-responsive center-block" style="height: 300px;"/></td>
 		</div>
 	</div>
-
-
-
 	<div class="row">
 		<div class="col-md-12">
 			<h1 class="text-center text-danger">Eat-Da-Burger</h1>
 		</div>
 	</div>
-
-
-
 	<div class="row">
 		<div class="col-md-5">
-			<h3>Available Burgers</h3>
+			<h3 style="margin-left: 50px">Available Burgers</h3>
 			<ul>
 				{{#each burgers}}
 					{{#unless this.devoured}}
 						<li>
 							<h5>{{this.id}}. {{this.burger_name}}
-								<form action='/burgers/create'method='Post'>
+								<form action='burgers/update/{{this.id}}?_'method='PUT'>
 									<input type='hidden' name='devoured' value='true'>
 									<button type='submit' class="btn btn-default">Devour it</button>
 								</form>
@@ -34,13 +27,9 @@
 				{{/each}}
 			</ul>
 		</div>
-
-
 		<div class="col-md-2"></div>
-
-
 		<div class="col-md-5">
-			<h3 class="text-muted">Devoured Burgers</h3>
+			<h3 class="text-muted" style="margin-left: 100px;">Devoured Burgers</h3>
 			<ul>
 				{{#each burgers}}
 					{{#if this.devoured}}
@@ -58,7 +47,7 @@
 
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<form class="create-update-form" action="/burgers/update" method="PUT">
+			<form class="create-update-form" action="burgers/create" method="POST">
 				<div class="form-group">
 					<textarea type="text" name="name"></textarea><br>
 					<button class="btn btn-default" type="submit">Submit</button>
