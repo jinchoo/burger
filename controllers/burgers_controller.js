@@ -36,7 +36,6 @@ router.put("/burgers/update/:id", function (req, res) {
     },
     condition,
     function (result) {
-      res.redirect("/index");
       if (result.changeRows == 0) {
         return res.status(404).end();
       } else {

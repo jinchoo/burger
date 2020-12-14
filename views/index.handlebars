@@ -60,7 +60,8 @@
 	</div>
 </div>
 <script>
-	$(".devour").on("click", function(){
+	$("body").on("click", ".devour", function(){
+		console.log("I'm clicked")
         let id = $(this).attr("data-id");
         $.ajax({
 			method: "PUT"

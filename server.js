@@ -1,7 +1,7 @@
 var express = require("express");
 var methodOverride = require("method-override");
 var bodyParser = require("body-parser");
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3050;
 
 var app = express();
 app.use(express.static("public"));
@@ -24,4 +24,5 @@ app.use("/", routes);
 
 app.listen(PORT, function () {
   console.log("Server listening on: http://localhost:" + PORT);
+  console.log("connected to script");
 });
