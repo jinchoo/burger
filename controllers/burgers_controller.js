@@ -25,7 +25,7 @@ router.post("/burgers/create", function (req, res) {
   );
 });
 
-router.put("burgers/:id", function (req, res) {
+router.put("/burgers/update/:id", function (req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
