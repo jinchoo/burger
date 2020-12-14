@@ -21,7 +21,7 @@
 								<form>
 									<input type='hidden' name='devoured' value='true'>
 									<!-- <button type='submit' class="btn btn-default">Devour it</button> -->
-									<button class="btn btn-default devour" data-id="{{id}}" data-newdevour=true>Devour it</button>
+									<button class="btn btn-default devour" data-id="{{id}}" id = "devour" data-newdevour=true>Devour it</button>
 								</form>
 							</h5>
 						</li>
@@ -60,7 +60,7 @@
 	</div>
 </div>
 <script>
-	$(".btn btn-default devour").on("click", function(event){
+	$("#devour").click(function(event){
 		console.log("I'm clicked")
         var id = $(this).data("id");
 		var newDevour = $(this).data("newdevour");
@@ -76,13 +76,5 @@
             location.reload();
         });
 	});
-    /*function devour(btn){
-        let $btn = $(btn);
-        let id = $btn.data('burger_id');
-        $.ajax("/burgers/update" + id, {
-            type: "PUT",
-            data: id
-        }).then(function (){
-            location.reload();
-        });*/
+	
     </script>
