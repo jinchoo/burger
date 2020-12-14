@@ -168,8 +168,21 @@ All the recommended files and directories from the steps above should look like 
         └── main.handlebars
 ```
 
-![](./public/assets/images/eat_da_burger_screenshot.png)
+## Techologies:
+
+- JavaScript
+- CSS3
+- Node JS
+- MySQL
+- MySQL WorkBanch
+- Express
+- Express Handlebars
+- GitHub Repository
+- npm packages
 
 ## Repository
 
 - [Project Repo](https://github.com/jinchoo/burger)
+- [Heroku App](https://afternoon-hamlet-53380.herokuapp.com/)
+
+![](./public/assets/images/eat_da_burger_screenshot.png)
