@@ -14,14 +14,14 @@
 			<h3 style="margin-left: 50px">Available Burgers</h3>
 			<ul>
 				{{#each burgers}}
-					{{#unless this.devoured}}
+					{{#unless devoured}}
 						<li>
-							<h5>{{this.id}}. {{this.burger_name}}
+							<h5>{{id}}. {{burger_name}}
 								<!-- <form action='/burgers/update/{{this.id}}' method='PUT'> -->
 								<form>
 									<input type='hidden' name='devoured' value='true'>
 									<!-- <button type='submit' class="btn btn-default">Devour it</button> -->
-									<button class="btn btn-default devour" data-id={{this.id}}>Devour it</button>
+									<button class="btn btn-default devour" data-id="{{id}}" data-newdevour=true>Devour it</button>
 								</form>
 							</h5>
 						</li>
@@ -34,9 +34,9 @@
 			<h3 class="text-muted" style="margin-left: 100px;">Devoured Burgers</h3>
 			<ul>
 				{{#each burgers}}
-					{{#if this.devoured}}
+					{{#if devoured}}
 						<li>
-							<h5 class="text-muted">{{this.id}}. {{this.burger_name}}</h5>
+							<h5 class="text-muted">{{id}}. {{burger_name}}</h5>
 						</li>
 					{{/if}}
 				{{/each}}
@@ -60,18 +60,23 @@
 	</div>
 </div>
 <script>
-	$("body").on("click", ".devour", function(){
+	$(".btn btn-default devour").on("click", function(event){
 		console.log("I'm clicked")
-        let id = $(this).attr("data-id");
-        $.ajax({
-			method: "PUT"
-			URL: "/burgers/update/" + id
-        }).then(function (){
+        var id = $(this).data("id");
+		var newDevour = $(this).data("newdevour");
+
+		var newDevourState = {
+			devoured: newDevour,
+		}; 
+
+        $.ajax("/burgers/update/" + id, {
+			type: "PUT",
+			data: newDevourState,
+        }).then(function () {
             location.reload();
         });
-	})
+	});
     /*function devour(btn){
-        //wrap btn with jquery
         let $btn = $(btn);
         let id = $btn.data('burger_id');
         $.ajax("/burgers/update" + id, {
@@ -80,5 +85,4 @@
         }).then(function (){
             location.reload();
         });*/
-    }
     </script>
